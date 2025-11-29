@@ -13,6 +13,7 @@ public class Consulta {
     private Receta receta;
     private Orden[] ordenes;
     private Cita cita;
+    private String paciente;
 
     public Consulta(String codigo, Cita cita, String motivo, String signosVitales, String examenFisico, String diagnostico, String plan, Receta receta, Orden[] ordenes) {
         this.codigo = codigo;
@@ -85,6 +86,10 @@ public class Consulta {
 
     public Cita getCita() {
         return cita;
+    }
+
+    public String getPaciente() {
+        return paciente;
     }
        
 }

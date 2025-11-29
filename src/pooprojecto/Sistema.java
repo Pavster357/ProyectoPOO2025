@@ -71,4 +71,8 @@ public class Sistema {
     public static GestionPacientes getGestionPacientes() {
         return gestionPacientes;
     }  
+    
+    public static GestionUsuarios getGestionUsuarios() {
+        return gestionUsuarios;
+    }
 }

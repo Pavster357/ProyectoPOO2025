@@ -366,9 +366,19 @@ public class Inicio extends javax.swing.JFrame {
         Roles.add(Historia);
 
         Facturacionypagos.setText("Facturación y pagos");
+        Facturacionypagos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FacturacionypagosActionPerformed(evt);
+            }
+        });
         Roles.add(Facturacionypagos);
 
         Reportes.setText("Reportes");
+        Reportes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ReportesActionPerformed(evt);
+            }
+        });
         Roles.add(Reportes);
 
         jMenuBar1.add(Roles);
@@ -506,6 +516,25 @@ public class Inicio extends javax.swing.JFrame {
         Check.pack();
         Check.setLocationRelativeTo(null);
     }//GEN-LAST:event_AdmisiónyaltaActionPerformed
+
+    private void ReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReportesActionPerformed
+        ReportesGUI ventana = new ReportesGUI(
+            pooprojecto.Sistema.getGestionConsulta(),
+            pooprojecto.Sistema.getGestionConsultorio(),
+            pooprojecto.Sistema.getGestionFacturas(),
+            Model.Medico.getMedicos()
+        );
+
+        ventana.setLocationRelativeTo(null);
+        ventana.setVisible(true);// TODO add your handling code here:
+    }//GEN-LAST:event_ReportesActionPerformed
+
+    private void FacturacionypagosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FacturacionypagosActionPerformed
+    GFactura factura = new GFactura();
+    factura.setVisible(true);
+    factura.pack();
+    factura.setLocationRelativeTo(null);        // TODO add your handling code here:
+    }//GEN-LAST:event_FacturacionypagosActionPerformed
 
     /**
      * @param args the command line arguments
