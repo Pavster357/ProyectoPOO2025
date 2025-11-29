@@ -17,6 +17,7 @@ public class RegistrarO extends javax.swing.JFrame {
     private Orden[] ordenesActuales;
 
     public RegistrarO(RegistrarCons padre, Orden[] ordenesActuales) {
+        initComponents();
         this.padre = padre;
         this.ordenesActuales = ordenesActuales;
     }
