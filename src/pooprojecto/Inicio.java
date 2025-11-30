@@ -360,6 +360,11 @@ public class Inicio extends javax.swing.JFrame {
         Roles.add(AtenciónClínica);
 
         Ordenesanálisis.setText("Ejecución de órdenes de análisis");
+        Ordenesanálisis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OrdenesanálisisActionPerformed(evt);
+            }
+        });
         Roles.add(Ordenesanálisis);
 
         Historia.setText("Historia Clínica y Documentos ");
@@ -535,6 +540,13 @@ public class Inicio extends javax.swing.JFrame {
     factura.pack();
     factura.setLocationRelativeTo(null);        // TODO add your handling code here:
     }//GEN-LAST:event_FacturacionypagosActionPerformed
+
+    private void OrdenesanálisisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OrdenesanálisisActionPerformed
+    G_EjecucionOrdenes ventanaOrdenes = new G_EjecucionOrdenes();
+        ventanaOrdenes.setVisible(true);     
+        ventanaOrdenes.pack(); 
+        ventanaOrdenes.setLocationRelativeTo(null);        // TODO add your handling code here:
+    }//GEN-LAST:event_OrdenesanálisisActionPerformed
 
     /**
      * @param args the command line arguments

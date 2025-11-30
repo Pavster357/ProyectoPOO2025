@@ -61,6 +61,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ejecuci&#xf3;n de &#xf3;rdenes de an&#xe1;lisis"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Ordenesan&#xe1;lisisActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="Historia">
               <Properties>

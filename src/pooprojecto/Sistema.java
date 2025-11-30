@@ -10,6 +10,7 @@ import Controller.GestionFactura;
 import Controller.GestionUsuarios;
 import Controller.GestionConsulta;
 import Controller.GestionConsultorio;
+import Controller.GestionOrdenes;
 import Controller.GestionPacientes;
 import Controller.GestionResumenClinicos;
 import Model.Usuario;
@@ -27,6 +28,7 @@ public class Sistema {
     static GestionPacientes gestionPacientes;
     static GestionAgendaMedica gestionAgendaMedica;
     static GestionResumenClinicos gestionResumenClinico;
+    static GestionOrdenes gestionOrdenes;
 
     
     static void InicializarVariables(){
@@ -75,4 +77,6 @@ public class Sistema {
     public static GestionUsuarios getGestionUsuarios() {
         return gestionUsuarios;
     }
+    
+   
 }
