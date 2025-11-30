@@ -1,5 +1,7 @@
 package Model.Secundarios;
 
+import Controller.GestionOrdenes;
+
 public class Orden {
     private String codigo;
     private String tipo;        
@@ -16,20 +18,20 @@ public class Orden {
         this.nombre = nombre;
         this.precio = 50.0; 
 
-        this.estado = "Pendiente";
-        this.resultado = "";        // mantener cadena vacía para compatibilidad
+        // Estado consistente con el sistema
+        this.estado = GestionOrdenes.ESTADO_REGISTRADA;
+        this.resultado = "";
         this.fechaResultado = "";
     }
 
     public void registrarTomaMuestra() {
-        this.estado = "En Proceso";
+        this.estado = GestionOrdenes.ESTADO_EN_PROCESO;
     }
 
     public void cargarResultado(String resultadoTexto, String fecha) {
-        if (resultadoTexto == null) resultadoTexto = "";
-        this.resultado = resultadoTexto;
+        this.resultado = resultadoTexto != null ? resultadoTexto : "";
         this.fechaResultado = fecha != null ? fecha : "";
-        this.estado = "Finalizado";
+        this.estado = GestionOrdenes.ESTADO_FINALIZADA;
     }
 
     public String getCodigo() {

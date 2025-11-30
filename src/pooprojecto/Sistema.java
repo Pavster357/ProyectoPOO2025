@@ -20,6 +20,11 @@ import Model.Usuario;
  * @author Alvaro
  */
 public class Sistema {
+    private static GestionOrdenes gestionOrdenes = new GestionOrdenes();
+
+    public static GestionOrdenes getGestionOrdenes() {
+        return gestionOrdenes;
+    }
     static GestionUsuarios gestionUsuarios;
     static GestionFactura gestionFacturas;
     static GestionCita gestionCita;
@@ -28,9 +33,8 @@ public class Sistema {
     static GestionPacientes gestionPacientes;
     static GestionAgendaMedica gestionAgendaMedica;
     static GestionResumenClinicos gestionResumenClinico;
-    static GestionOrdenes gestionOrdenes;
-
     
+  
     static void InicializarVariables(){
         gestionUsuarios = new GestionUsuarios();
         gestionFacturas = new GestionFactura();
@@ -40,6 +44,7 @@ public class Sistema {
         gestionPacientes = new GestionPacientes();
         gestionAgendaMedica = new GestionAgendaMedica();
         gestionResumenClinico = new GestionResumenClinicos();
+        gestionOrdenes = new GestionOrdenes(); 
     }
     private Usuario[] Usuarios;
     private int nroUsuarios;
@@ -76,6 +81,24 @@ public class Sistema {
     
     public static GestionUsuarios getGestionUsuarios() {
         return gestionUsuarios;
+    }
+
+    public static GestionAgendaMedica getGestionAgendaMedica() {
+        return gestionAgendaMedica;
+    }
+
+    public static GestionResumenClinicos getGestionResumenClinico() {
+        return gestionResumenClinico;
+    }
+
+   
+
+    public Usuario[] getUsuarios() {
+        return Usuarios;
+    }
+
+    public int getNroUsuarios() {
+        return nroUsuarios;
     }
     
    

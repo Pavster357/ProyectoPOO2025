@@ -17,6 +17,15 @@ public class GestionConsulta {
         count = 0;
     }
     
+    public boolean agregarConsulta(Consulta c) {
+        if (count < consultas.length) {
+            consultas[count] = c;
+            count++;
+            return true;
+        }
+        return false;
+    }
+    
     public boolean ActualizarConsulta(Consulta original, Consulta actualizada){
         for (int i = 0; i < count; i++){
             if (consultas[i] == original){

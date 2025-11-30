@@ -4,12 +4,15 @@
  */
 package pooprojecto;
 
+import Controller.GestionOrdenes;
 import Model.Administrador;
 import Model.Cajero;
 import Model.Empleado;
 import Model.Enfermero;
 import Model.Medico;
 import Model.Recepcionista;
+import Model.Secundarios.Factura;
+import Model.Secundarios.Orden;
 import Model.Usuario;
 
 /**
@@ -19,6 +22,7 @@ import Model.Usuario;
 public class Start extends javax.swing.JFrame {
 
     public static void main(String[] args) {
+        
 
         // Inicializar todo el sistema ANTES del login
         Sistema.InicializarVariables();
@@ -50,6 +54,12 @@ public class Start extends javax.swing.JFrame {
         Empleado m1 = new Medico("Angel Rodrigo", "Menendez Arriola", "amenendezm@gmail.com", "15376066", "975284369", "Pediatra");
         Usuario u5 = new Usuario("MED-001", "1809", "Medico", m1);
         Sistema.gestionUsuarios.AgregarUsuario(u5);
+        
+        GestionOrdenes go = Sistema.getGestionOrdenes();
+
+        Orden nueva = new Orden("A001", "Laboratorio", "Hemograma");
+        go.agregarOrden(nueva);
+        
     }
 
     /**
