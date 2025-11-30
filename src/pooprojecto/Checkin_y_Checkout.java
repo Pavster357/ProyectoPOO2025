@@ -30,23 +30,28 @@ public class Checkin_y_Checkout extends javax.swing.JFrame {
 
         for (int i = 0; i < count; i++) {
             Cita c = citas[i];
-            if (c != null && c.getEstado().equals("Confirmada")) {
+            if (c != null && "Confirmada".equals(c.getEstado())) {
                 modelo.addRow(new Object[]{
                     c.getPaciente().getNombres(),
                     c.getPaciente().getDni(),
                     c.getHora(),
-                    c
+                    c 
                 });
             }
-            if (TCitaA.getColumnModel().getColumnCount() > 3) {
-                TableColumn col = TCitaA.getColumnModel().getColumn(3);
-                col.setMinWidth(0);
-                col.setMaxWidth(0);
-                col.setPreferredWidth(0);
-                col.setWidth(0);
-                col.setResizable(false);
-            }
         }
+
+        if (TCitaA.getColumnModel().getColumnCount() > 3) {
+            TableColumn col = TCitaA.getColumnModel().getColumn(3);
+            col.setMinWidth(0);
+            col.setMaxWidth(0);
+            col.setPreferredWidth(0);
+            col.setWidth(0);
+            col.setResizable(false);
+        }
+
+        TCitaA.setRowSelectionAllowed(true);
+        TCitaA.setColumnSelectionAllowed(false);
+        TCitaA.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
     }
     
     private void cargarElementos2(){
@@ -58,7 +63,7 @@ public class Checkin_y_Checkout extends javax.swing.JFrame {
 
         for (int i = 0; i < count; i++) {
             Cita c = citas[i];
-            if (c != null && c.getEstado().equals("Atendida")) {
+            if (c != null && "Atendida".equals(c.getEstado())) {
                 modelo.addRow(new Object[]{
                     c.getPaciente().getNombres(),
                     c.getPaciente().getDni(),
@@ -66,15 +71,20 @@ public class Checkin_y_Checkout extends javax.swing.JFrame {
                     c
                 });
             }
-            if (TCitaAt.getColumnModel().getColumnCount() > 3) {
-                TableColumn col = TCitaAt.getColumnModel().getColumn(3);
-                col.setMinWidth(0);
-                col.setMaxWidth(0);
-                col.setPreferredWidth(0);
-                col.setWidth(0);
-                col.setResizable(false);
-            }
         }
+
+        if (TCitaAt.getColumnModel().getColumnCount() > 3) {
+            TableColumn col = TCitaAt.getColumnModel().getColumn(3);
+            col.setMinWidth(0);
+            col.setMaxWidth(0);
+            col.setPreferredWidth(0);
+            col.setWidth(0);
+            col.setResizable(false);
+        }
+
+        TCitaAt.setRowSelectionAllowed(true);
+        TCitaAt.setColumnSelectionAllowed(false);
+        TCitaAt.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -256,12 +266,16 @@ public class Checkin_y_Checkout extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btCheck_inActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCheck_inActionPerformed
-        int fila = TCitaAt.getSelectedRow();
+         int fila = TCitaA.getSelectedRow();
         if (fila == -1) {
             JOptionPane.showMessageDialog(this,"Seleccione una cita");
             return;
         }
-        Cita cita = (Cita) TCitaAt.getValueAt(fila, 3);
+        Cita cita = (Cita) TCitaA.getValueAt(fila, 3);
+        if (cita == null) {
+            JOptionPane.showMessageDialog(this,"Error: cita no encontrada");
+            return;
+        }
         cita.setEstado("En sala");
         Sistema.gestionAgendaMedica.actualizarCita(cita);
         Sistema.gestionCita.ActualizarCita(cita, cita);
@@ -271,26 +285,38 @@ public class Checkin_y_Checkout extends javax.swing.JFrame {
         }
         JOptionPane.showMessageDialog(this, "Cita enviada a sala correctamente");
         cargarElementos1();
+        cargarElementos2();
     }//GEN-LAST:event_btCheck_inActionPerformed
 
     private void btCheck_outActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCheck_outActionPerformed
-        int fila = TCitaAt.getSelectedRow();
-        if (fila == -1) {
-            JOptionPane.showMessageDialog(this,"Seleccione una cita");
+            int fila = TCitaAt.getSelectedRow();
+    if (fila == -1) {
+        JOptionPane.showMessageDialog(this,"Seleccione una cita");
+        return;
+    }
+    Cita cita = (Cita) TCitaAt.getValueAt(fila, 3);
+        if (cita == null) {
+            JOptionPane.showMessageDialog(this,"Error: cita no encontrada");
             return;
         }
-        Cita cita = (Cita) TCitaAt.getValueAt(fila, 3);
+
         Sistema.gestionCita.AgregarCitaSalida(cita);
         Sistema.gestionCita.EliminarCita(cita);
         Sistema.gestionAgendaMedica.eliminarCita(cita);
+
         Consultorio cons = cita.getConsultorio();
         if (cons != null) {
-            Sistema.gestionCita.ActualizarCitaConsultorio(cons, cita);
+            Sistema.gestionCita.EliminarCitaConsultorio(cons, cita);
         }
+
         int total = Sistema.gestionCita.getCount();
-        JOptionPane.showMessageDialog(this,"Paciente deado de alta correctamente." +"\nCitas restantes en el sistema: " + total);
+        JOptionPane.showMessageDialog(this,"Paciente dado de alta correctamente.\nCitas restantes en el sistema: " + total);
+
         String resumen = Sistema.gestionResumenClinico.buscarResumen(cita.toString());
         System.out.println(resumen);
+
+        cargarElementos1();
+        cargarElementos2();
     }//GEN-LAST:event_btCheck_outActionPerformed
 
     private void btVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVolverActionPerformed
